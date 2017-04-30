@@ -36,7 +36,6 @@ app.get("/view", function (req, res) {
 });
 
 app.get("/upload", function (req, res) {
-    //res.send("Hell");
     res.render("upload.jade", {});
 });
 
