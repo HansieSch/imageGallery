@@ -1,0 +1,13 @@
+{
+    "name": "Image Gallery",
+    "version": "0.0.1",
+    "description": "Image gallery.",
+    "main": "server.js",
+    "dependencies": {
+        "express": "4.13.4",
+        "body-parser": "1.15.1",
+        "jade": "1.11.0",
+        "jimp": "0.2.27",
+        "multer": "1.2.0"
+    }
+}
