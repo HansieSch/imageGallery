@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1.uploadHeader Upload It
+    form(action="http://127.0.0.1:8000/uploadFile", method="POST", enctype="multipart/form-data", id="uploadForm")
+        input(type="file", accept="image/*", multiple="false", name="photo", required)
+        button(type="submit") Upload

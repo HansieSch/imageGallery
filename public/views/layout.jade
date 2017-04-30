@@ -1,0 +1,22 @@
+<!doctype html>
+html(lang="en-za")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Image Gallery
+        link(rel="stylesheet", href="/css/style.css")
+
+    body
+        nav
+            a.nav-logo(href="/") IM
+            ul
+                //
+                    li
+                        form(onsubmit="console.log('Submitted'); return false;")
+                            input(type="text", placeholder="Search")
+                li
+                    a(href="/upload") Upload
+                li
+                    a(href="/") Gallery
+        block content
+        script(src="/js/script.js")

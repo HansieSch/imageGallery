@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1.pageHeader Image Gallery
+    section#gallery
+        each source in sources
+            a(href="/view?fileName=" + source)
+                img(src="images/thumbnails/" + source)
