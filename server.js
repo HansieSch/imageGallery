@@ -4,6 +4,7 @@ var http = require("http"),
     bodyParser = require("body-parser"),
     app = express(),
     jade = require("jade"),
+    jimp = require("jimp"),
     multer = require("multer");
 
 var server = http.createServer(app).listen(8000, serverStart);
@@ -40,9 +41,21 @@ app.get("/upload", function (req, res) {
 });
 
 app.post("/uploadFile", upload.single("photo"), function (req, res) {
-    fs.writeFileSync(__dirname + "/public/assets/images/" + req.file.originalname, req.file.buffer);
+    //fs.writeFileSync(__dirname + "/public/assets/images/" + req.file.originalname, req.file.buffer);
 
-    res.redirect("/");
+    jimp.read(req.file.buffer, function (err, image) {
+        if (err) res.send(err);
+
+        image.write(__dirname + "/public/assets/images/" + req.file.originalname); // save
+
+        image.scaleToFit(640, jimp.AUTO)
+             .write(__dirname + "/public/assets/images/thumbnails/" + req.file.originalname); // save
+
+        image.scaleToFit(1536, jimp.AUTO)
+             .write(__dirname + "/public/assets/images/view/" + req.file.originalname); // save
+        
+        res.redirect("/");
+    });
 });
 
 /*fs.readdir(__dirname + "/public/assets/images/view", function (err, files) {
