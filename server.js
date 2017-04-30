@@ -41,8 +41,6 @@ app.get("/upload", function (req, res) {
 });
 
 app.post("/uploadFile", upload.single("photo"), function (req, res) {
-    //fs.writeFileSync(__dirname + "/public/assets/images/" + req.file.originalname, req.file.buffer);
-
     jimp.read(req.file.buffer, function (err, image) {
         if (err) res.send(err);
 
@@ -57,17 +55,6 @@ app.post("/uploadFile", upload.single("photo"), function (req, res) {
         res.redirect("/");
     });
 });
-
-/*fs.readdir(__dirname + "/public/assets/images/view", function (err, files) {
-    if (err) console.log(err,files);
-    for (var file of files) {
-        fs.rename(__dirname + "/public/assets/images/view/" + file,
-            __dirname + "/public/assets/images/view/" + file.replace(" (Medium)", ""),
-                function (err) {
-                    if (err) console.log("Error in renaming files.", err);
-                });
-    }
-});*/
 
 function serverStart() {
     console.log("Server listening on port 8000");
