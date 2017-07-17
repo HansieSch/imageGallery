@@ -4,5 +4,9 @@ block content
     h1.pageHeader Image Gallery
     section#gallery
         each source in sources
-            a(href="/view?fileName=" + source)
-                img(src="images/thumbnails/" + source)
+            div.card
+                a(href="/view?fileName=" + source)
+                    img(src="images/thumbnails/" + source)
+                div.content
+                    a.dlt.btn(href="#", data-filename=source) delete
+                    a.download.btn(href="/images/" + source, target="_blank", download=image) Download

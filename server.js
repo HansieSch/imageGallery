@@ -44,15 +44,35 @@ app.post("/uploadFile", upload.single("photo"), function (req, res) {
     jimp.read(req.file.buffer, function (err, image) {
         if (err) res.send(err);
 
-        image.write(__dirname + "/public/assets/images/" + req.file.originalname); // save
+        image.write(__dirname + "/public/assets/images/" + req.file.originalname); // save original
 
         image.scaleToFit(640, jimp.AUTO)
-             .write(__dirname + "/public/assets/images/thumbnails/" + req.file.originalname); // save
+             .write(__dirname + "/public/assets/images/view/" + req.file.originalname); // save preview image
 
-        image.scaleToFit(1536, jimp.AUTO)
-             .write(__dirname + "/public/assets/images/view/" + req.file.originalname); // save
+        image.scaleToFit(320, jimp.AUTO)
+             .write(__dirname + "/public/assets/images/thumbnails/" + req.file.originalname); // save thumbnail image
         
         res.redirect("/");
+    });
+});
+
+app.delete("/deleteFile", function (req, res) {
+    console.log("delete called");
+    // check if original exists.
+    fs.access(__dirname + "/public/assets/images/" + req.query.fileName, function (err) {
+        if (err) {
+            res.json({
+                success: false
+            });
+        }
+
+        fs.unlinkSync(__dirname + "/public/assets/images/" + req.query.fileName);
+        fs.unlinkSync(__dirname + "/public/assets/images/view/" + req.query.fileName);
+        fs.unlinkSync(__dirname + "/public/assets/images/thumbnails/" + req.query.fileName);
+
+        res.json({
+            success: true
+        });
     });
 });
 

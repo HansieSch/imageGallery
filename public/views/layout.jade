@@ -10,13 +10,10 @@ html(lang="en-za")
         nav
             a.nav-logo(href="/") IM
             ul
-                //
-                    li
-                        form(onsubmit="console.log('Submitted'); return false;")
-                            input(type="text", placeholder="Search")
                 li
                     a(href="/upload") Upload
                 li
                     a(href="/") Gallery
         block content
+        script(src="/js/atomic.js")
         script(src="/js/script.js")

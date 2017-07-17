@@ -1,5 +1,2 @@
 public/assets/images/**/*
 node_modules/**/*
-
-# Was used previously. Has to do with BinaryJS.
-public/binary.js

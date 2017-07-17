@@ -3,5 +3,6 @@ extends layout
 block content
     //- h1 View Single Image
     div.imageWrapper
-        a.downloadBtn(href="/images/" + image, target="_blank", download=image) Download
         img.singleImage(src="/images/view/" + image)
+        div.singleImage.download
+            a.download.btn(href="/images/" + image, target="_blank", download=image) Download
